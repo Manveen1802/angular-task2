@@ -5,6 +5,7 @@ import { AdminRoutes, AdminRoutingModule } from './admin-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
 import { PersonalinformationComponent } from './personalinformation/personalinformation.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { PersonalinformationComponent } from './personalinformation/personalinfo
     CommonModule,
     AdminRoutingModule,
     RouterModule.forChild(AdminRoutes),
-    TableModule
+    TableModule,
+    FormsModule,
+    ReactiveFormsModule
     
   
     

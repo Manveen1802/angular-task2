@@ -1,29 +1,34 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary px-5 shadow ">
     <div class="container-fluid">
         <h3>Student List</h3>
-        <button class="btn btn-primary"(click)="addstudent()" >Add Student</button>
+        <button class="btn btn-primary" (click)="addStudent()">Add Student</button>
     </div>
 </nav>
 <div class="container">
-<p-table [value]="users" class="px-5">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>ID</th>
-            <th>Email</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Avatar</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-std>
-        <tr *ngFor="let user of users">
-            <td>{{ user.id }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.first_name }}</td>
-      <td>{{ user.last_name }}</td>
-      <td><img [src]="user.avatar" alt=""></td>
+    <p-table class="px-5" #dt1 dataKey="users" (onLazyLoad)="getUsers($event)" [lazy]="true" [loading]="isLoading"
+        [currentPageReportTemplate]="'Showing {currentPage} of {totalPages} Pages'" [totalRecords]="totalRecords"
+        [resizableColumns]="true" columnResizeMode="expand" [rows]="10" [showCurrentPageReport]="false" [value]="users"
+        responsiveLayout="scroll" styleClass="p-datatable-stadium " [paginator]="users.length > 0"
+        currentPageReportTemplate="" [globalFilterFields]="['coach_id','name','mobile', 'coachType']"
+        sortField="coach_id" [sortOrder]="-1">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Avatar</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td><img [src]="user.avatar" alt=""></td>
 
-        </tr>
-    </ng-template>
-</p-table>
+            </tr>
+        </ng-template>
+    </p-table>
 </div>

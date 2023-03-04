@@ -10,8 +10,13 @@ export class AdminService {
 
   constructor(private httpclient: HttpClient) { }
   base_url: string = environment.base_url;
-  getusers(page:any){
-    var url = `${this.base_url}/api/users?page=${page}`;
-    return this.httpclient.get<any>(url);
+  getusers(req:any): Observable<any>{
+    var url = `${this.base_url}/api/users?page=${req?.page}`;
+    return this.httpclient.get<any[]>(url);
   }
+  addUser(body:any):  Observable<any>{
+    var url= this.base_url+'/api/users',user;
+    return this.httpclient.post<any>(url, body)
+  }
+
 }
